@@ -19,6 +19,7 @@ import util.Conexao;
 public class SistemaBandas extends javax.swing.JFrame {
 
     private FormBanda formBanda;
+    private FormAvaliacao formAvaliacao;
     private static Connection conexao;
 
     /**
@@ -41,6 +42,7 @@ public class SistemaBandas extends javax.swing.JFrame {
         menuBar = new javax.swing.JMenuBar();
         Cadastros = new javax.swing.JMenu();
         mnBanda = new javax.swing.JMenuItem();
+        mnAvaliacao = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator1 = new javax.swing.JSeparator();
         exitMenuItem = new javax.swing.JMenuItem();
@@ -54,7 +56,7 @@ public class SistemaBandas extends javax.swing.JFrame {
             }
         });
 
-        Cadastros.setText("Cadastros");
+        Cadastros.setText("Opções");
 
         mnBanda.setText("Banda");
         mnBanda.addActionListener(new java.awt.event.ActionListener() {
@@ -63,6 +65,14 @@ public class SistemaBandas extends javax.swing.JFrame {
             }
         });
         Cadastros.add(mnBanda);
+
+        mnAvaliacao.setText("Avaliação");
+        mnAvaliacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnAvaliacaoActionPerformed(evt);
+            }
+        });
+        Cadastros.add(mnAvaliacao);
         Cadastros.add(jSeparator2);
         Cadastros.add(jSeparator1);
 
@@ -99,11 +109,11 @@ public class SistemaBandas extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 953, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
+            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 467, Short.MAX_VALUE)
         );
 
         pack();
@@ -154,6 +164,15 @@ public class SistemaBandas extends javax.swing.JFrame {
 
     }//GEN-LAST:event_mnBandaActionPerformed
 
+    private void mnAvaliacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnAvaliacaoActionPerformed
+        if (this.formAvaliacao == null) {
+            this.formAvaliacao = new FormAvaliacao(this);
+            this.desktopPane.add(this.formAvaliacao);
+        }
+        this.openJanela(this.formAvaliacao);
+
+    }//GEN-LAST:event_mnAvaliacaoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -176,6 +195,7 @@ public class SistemaBandas extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenu mnAjuda;
+    private javax.swing.JMenuItem mnAvaliacao;
     private javax.swing.JMenuItem mnBanda;
     private javax.swing.JMenuItem mnSobre;
     // End of variables declaration//GEN-END:variables

@@ -26,7 +26,6 @@ public class FormBanda extends javax.swing.JInternalFrame {
         this.mdi = mdi;
         initComponents();
         
-
     }
 
     /**

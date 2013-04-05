@@ -201,6 +201,7 @@ public class FormLogin extends javax.swing.JDialog {
             Usuario usr = usrDAO.retrieve(this.txtLogin.getText());
             if (usr != null) {
                 loginValido = usr.validaSenha(new String(this.txtSenha.getPassword()));
+                
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -212,6 +213,7 @@ public class FormLogin extends javax.swing.JDialog {
             this.txtLogin.requestFocus();
         } else {
             this.doClose(RET_OK);
+            //Abrir a tela
         }
     }
 
