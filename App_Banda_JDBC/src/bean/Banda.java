@@ -9,32 +9,50 @@ package bean;
  * @author Gustavo
  */
 public class Banda {
-    private String descricao;
-    private String localizacao;
 
-    public Banda(String descricao, String localizacao) {
-        this.descricao = descricao;
-        this.localizacao = localizacao;
+    private int cod;
+    private String nome;
+    private String biografia;
+
+    public Banda() {
     }
 
-
-
-    public String getDescricao() {
-        return descricao;
+    public Banda(String nome, String biografia) {
+        this.nome = nome;
+        this.biografia = biografia;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public Banda(int cod) {
+        this.cod = cod;
     }
 
-    public String getLocalizacao() {
-        return localizacao;
+    public Banda(int cod, String nome, String biografia) {
+        this.cod = cod;
+        this.nome = nome;
+        this.biografia = biografia;
     }
 
-    public void setLocalizacao(String localizacao) {
-        this.localizacao = localizacao;
+    public int getCod() {
+        return cod;
     }
 
+    public void setCod(int cod) {
+        this.cod = cod;
+    }
 
-    
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getBiografia() {
+        return biografia;
+    }
+
+    public void setBiografia(String biografia) {
+        this.biografia = biografia;
+    }
 }
