@@ -4,7 +4,16 @@
  */
 package view;
 
+import bean.Banda;
+import dao.BandaDAO;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -20,6 +29,7 @@ public class FormAvaliacao extends javax.swing.JInternalFrame {
     public FormAvaliacao(JFrame mdi) {
         this.mdi = mdi;
         initComponents();
+        this.atualizaLista();
 
     }
 
@@ -32,49 +42,302 @@ public class FormAvaliacao extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        BandaNota = new javax.swing.ButtonGroup();
+        jTabbedPane3 = new javax.swing.JTabbedPane();
+        jPanel5 = new javax.swing.JPanel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        tbBandas = new javax.swing.JTable();
+        jPanel6 = new javax.swing.JPanel();
+        lnNomebanda = new javax.swing.JLabel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        txtBiografia = new javax.swing.JTextArea();
+        jRadioButton5 = new javax.swing.JRadioButton();
+        jRadioButton6 = new javax.swing.JRadioButton();
+        jRadioButton7 = new javax.swing.JRadioButton();
+        jRadioButton8 = new javax.swing.JRadioButton();
+        jRadioButton9 = new javax.swing.JRadioButton();
+        jLabel4 = new javax.swing.JLabel();
+        jPanel7 = new javax.swing.JPanel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
 
-        jLabel1.setText("jLabel1");
+        setClosable(true);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        tbBandas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "Cod", "Banda"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tbBandas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbBandasMouseClicked(evt);
+            }
+        });
+        jScrollPane5.setViewportView(tbBandas);
+
+        lnNomebanda.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        lnNomebanda.setText("Banda");
+
+        jScrollPane6.setBackground(new java.awt.Color(204, 204, 204));
+        jScrollPane6.setEnabled(false);
+
+        txtBiografia.setEditable(false);
+        txtBiografia.setBackground(new java.awt.Color(240, 240, 240));
+        txtBiografia.setColumns(20);
+        txtBiografia.setRows(5);
+        txtBiografia.setText("Lorem ipsum dolor sit amet, consectetur adipiscing elit. \nMauris turpis sem, dictum a vestibulum vel, malesuada nec nibh. Suspendisse nec eros nunc, elementum pulvinar risus. Donec scelerisque dolor facilisis sapien aliquam nec aliquam massa vehicula. Sed congue interdum odio, nec consequat mauris rutrum eget. Vestibulum eros diam, lobortis in pretium sit amet, rhoncus eget enim. Curabitur porttitor luctus felis sit amet auctor. Aliquam accumsan, enim sit amet eleifend sodales, quam metus dignissim lorem, vel lobortis ligula sem scelerisque arcu. Vestibulum felis ante, tempor sit amet consectetur a, pharetra et nisi. Cras neque dolor, laoreet eget pretium eget, ullamcorper in massa. Vestibulum vestibulum, libero ut bibendum dapibus, nunc tortor pretium lorem, ac faucibus ipsum libero nec tortor. \nAenean auctor tortor eu dui rutrum in egestas turpis porttitor. \nMorbi vel velit quis lorem lobortis aliquet. ");
+        txtBiografia.setEnabled(false);
+        jScrollPane6.setViewportView(txtBiografia);
+
+        BandaNota.add(jRadioButton5);
+        jRadioButton5.setText("1");
+        jRadioButton5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jRadioButton5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jRadioButton5.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+
+        BandaNota.add(jRadioButton6);
+        jRadioButton6.setText("3");
+        jRadioButton6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jRadioButton6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jRadioButton6.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jRadioButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton6ActionPerformed(evt);
+            }
+        });
+
+        BandaNota.add(jRadioButton7);
+        jRadioButton7.setText("2");
+        jRadioButton7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jRadioButton7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jRadioButton7.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+
+        BandaNota.add(jRadioButton8);
+        jRadioButton8.setText("4");
+        jRadioButton8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jRadioButton8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jRadioButton8.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+
+        BandaNota.add(jRadioButton9);
+        jRadioButton9.setText("5");
+        jRadioButton9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jRadioButton9.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jRadioButton9.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+
+        jLabel4.setText("Sua Avaliação:");
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lnNomebanda)
+                .addGap(221, 221, 221))
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane6)
+                .addContainerGap())
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(139, 139, 139)
+                .addComponent(jRadioButton5)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel1)
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(jRadioButton7)
+                        .addGap(18, 18, 18)
+                        .addComponent(jRadioButton6)
+                        .addGap(18, 18, 18)
+                        .addComponent(jRadioButton8)
+                        .addGap(18, 18, 18)
+                        .addComponent(jRadioButton9)))
+                .addContainerGap(178, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(48, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(38, 38, 38))
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addComponent(lnNomebanda, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 19, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jRadioButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jRadioButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jRadioButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jRadioButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jRadioButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        jTabbedPane3.addTab("Bandas", jPanel5);
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 749, Short.MAX_VALUE)
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 369, Short.MAX_VALUE)
+        );
+
+        jTabbedPane3.addTab("Indicações", jPanel7);
+
+        jMenu1.setText("File");
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Edit");
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(100, 100, 100)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(194, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jTabbedPane3)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(61, 61, 61)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(117, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jTabbedPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jRadioButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton6ActionPerformed
+
+    private void tbBandasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbBandasMouseClicked
+        if (evt.getClickCount() > 1) {
+            JTable obj = (JTable) evt.getComponent();
+            int linha = obj.getSelectedRow();
+            Integer cod = (Integer) obj.getModel().getValueAt(linha, 0);
+            Banda band;
+            band = new Banda(cod);
+            this.preencheTela(band);
+        }
+    }//GEN-LAST:event_tbBandasMouseClicked
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup BandaNota;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JRadioButton jRadioButton3;
+    private javax.swing.JRadioButton jRadioButton4;
+    private javax.swing.JRadioButton jRadioButton5;
+    private javax.swing.JRadioButton jRadioButton6;
+    private javax.swing.JRadioButton jRadioButton7;
+    private javax.swing.JRadioButton jRadioButton8;
+    private javax.swing.JRadioButton jRadioButton9;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTabbedPane jTabbedPane2;
+    private javax.swing.JTabbedPane jTabbedPane3;
+    private javax.swing.JTable jTable2;
+    private javax.swing.JTable jTable3;
+    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea jTextArea2;
+    private javax.swing.JLabel lnNomebanda;
+    private javax.swing.JTable tbBandas;
+    private javax.swing.JTextArea txtBiografia;
     // End of variables declaration//GEN-END:variables
+
+    private void atualizaLista() {
+        try {
+            BandaDAO bandaDAO = new BandaDAO(SistemaBandas.getConexao());
+            List<Banda> lista = bandaDAO.listaTodos();
+            DefaultTableModel dtm = (DefaultTableModel) this.tbBandas.getModel();
+            dtm.setRowCount(0);
+            for (Banda banda : lista) {
+                dtm.addRow(new Object[]{banda.getCod(), banda.getNome()});
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this.mdi, String.format("Erro ao ler as Bandas:%s", ex.getMessage()), "Erro", JOptionPane.ERROR_MESSAGE);
+            Logger.getLogger(FormAvaliacao.class.getName()).log(Level.WARNING, "Erro ao ler os Departamentos", ex);
+        }
+    }
+
+    private boolean preencheTela(Banda band) {
+        boolean ret = false;
+        try {
+            BandaDAO bandDAO = new BandaDAO(SistemaBandas.getConexao());
+            band = bandDAO.retrieve(band);
+            if (band != null && band.getCod() > 0) {
+                this.lnNomebanda.setText(band.getNome());
+                this.txtBiografia.setText(band.getBiografia());
+                ret = true;
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this.mdi, String.format("Não foi possível carregar Departamento: %s", ex.getMessage()), "Erro", JOptionPane.ERROR_MESSAGE);
+            Logger.getLogger(FormAvaliacao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return ret;
+    }
 }
