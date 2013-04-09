@@ -5,6 +5,7 @@
 package view;
 
 import bean.Banda;
+import dao.AvaliaDAO;
 import dao.BandaDAO;
 import java.sql.SQLException;
 import java.util.List;
@@ -22,6 +23,7 @@ import javax.swing.table.DefaultTableModel;
 public class FormAvaliacao extends javax.swing.JInternalFrame {
 
     private JFrame mdi;
+    private Banda bandaSelecionada;
 
     /**
      * Creates new form FormBanda
@@ -51,12 +53,14 @@ public class FormAvaliacao extends javax.swing.JInternalFrame {
         lnNomebanda = new javax.swing.JLabel();
         jScrollPane6 = new javax.swing.JScrollPane();
         txtBiografia = new javax.swing.JTextArea();
-        jRadioButton5 = new javax.swing.JRadioButton();
-        jRadioButton6 = new javax.swing.JRadioButton();
-        jRadioButton7 = new javax.swing.JRadioButton();
-        jRadioButton8 = new javax.swing.JRadioButton();
-        jRadioButton9 = new javax.swing.JRadioButton();
+        nota1 = new javax.swing.JRadioButton();
+        nota2 = new javax.swing.JRadioButton();
+        nota3 = new javax.swing.JRadioButton();
+        nota4 = new javax.swing.JRadioButton();
+        nota5 = new javax.swing.JRadioButton();
         jLabel4 = new javax.swing.JLabel();
+        btAvaliar = new javax.swing.JButton();
+        btAtualizar = new javax.swing.JToggleButton();
         jPanel7 = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -107,46 +111,57 @@ public class FormAvaliacao extends javax.swing.JInternalFrame {
         txtBiografia.setBackground(new java.awt.Color(240, 240, 240));
         txtBiografia.setColumns(20);
         txtBiografia.setRows(5);
-        txtBiografia.setText("Lorem ipsum dolor sit amet, consectetur adipiscing elit. \nMauris turpis sem, dictum a vestibulum vel, malesuada nec nibh. Suspendisse nec eros nunc, elementum pulvinar risus. Donec scelerisque dolor facilisis sapien aliquam nec aliquam massa vehicula. Sed congue interdum odio, nec consequat mauris rutrum eget. Vestibulum eros diam, lobortis in pretium sit amet, rhoncus eget enim. Curabitur porttitor luctus felis sit amet auctor. Aliquam accumsan, enim sit amet eleifend sodales, quam metus dignissim lorem, vel lobortis ligula sem scelerisque arcu. Vestibulum felis ante, tempor sit amet consectetur a, pharetra et nisi. Cras neque dolor, laoreet eget pretium eget, ullamcorper in massa. Vestibulum vestibulum, libero ut bibendum dapibus, nunc tortor pretium lorem, ac faucibus ipsum libero nec tortor. \nAenean auctor tortor eu dui rutrum in egestas turpis porttitor. \nMorbi vel velit quis lorem lobortis aliquet. ");
         txtBiografia.setEnabled(false);
         jScrollPane6.setViewportView(txtBiografia);
 
-        BandaNota.add(jRadioButton5);
-        jRadioButton5.setText("1");
-        jRadioButton5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jRadioButton5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jRadioButton5.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        BandaNota.add(nota1);
+        nota1.setText("1");
+        nota1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        nota1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        nota1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
-        BandaNota.add(jRadioButton6);
-        jRadioButton6.setText("3");
-        jRadioButton6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jRadioButton6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jRadioButton6.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jRadioButton6.addActionListener(new java.awt.event.ActionListener() {
+        BandaNota.add(nota2);
+        nota2.setText("2");
+        nota2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        nota2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        nota2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        nota2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton6ActionPerformed(evt);
+                nota2ActionPerformed(evt);
             }
         });
 
-        BandaNota.add(jRadioButton7);
-        jRadioButton7.setText("2");
-        jRadioButton7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jRadioButton7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jRadioButton7.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        BandaNota.add(nota3);
+        nota3.setText("3");
+        nota3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        nota3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        nota3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        nota3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nota3ActionPerformed(evt);
+            }
+        });
 
-        BandaNota.add(jRadioButton8);
-        jRadioButton8.setText("4");
-        jRadioButton8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jRadioButton8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jRadioButton8.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        BandaNota.add(nota4);
+        nota4.setText("4");
+        nota4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        nota4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        nota4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
-        BandaNota.add(jRadioButton9);
-        jRadioButton9.setText("5");
-        jRadioButton9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jRadioButton9.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jRadioButton9.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        BandaNota.add(nota5);
+        nota5.setText("5");
+        nota5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        nota5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        nota5.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
         jLabel4.setText("Sua Avaliação:");
+
+        btAvaliar.setText("Avaliar");
+        btAvaliar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAvaliarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -162,19 +177,23 @@ public class FormAvaliacao extends javax.swing.JInternalFrame {
                 .addContainerGap())
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(139, 139, 139)
-                .addComponent(jRadioButton5)
+                .addComponent(nota1)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jRadioButton7)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 161, Short.MAX_VALUE)
+                        .addComponent(btAvaliar))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(nota2)
                         .addGap(18, 18, 18)
-                        .addComponent(jRadioButton6)
+                        .addComponent(nota3)
                         .addGap(18, 18, 18)
-                        .addComponent(jRadioButton8)
+                        .addComponent(nota4, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jRadioButton9)))
-                .addContainerGap(178, Short.MAX_VALUE))
+                        .addComponent(nota5)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -182,32 +201,50 @@ public class FormAvaliacao extends javax.swing.JInternalFrame {
                 .addComponent(lnNomebanda, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 19, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jRadioButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jRadioButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jRadioButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jRadioButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jRadioButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 19, Short.MAX_VALUE)
+                        .addGap(11, 11, 11))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(btAvaliar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(nota1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nota5, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nota4, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nota3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nota2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
+
+        btAtualizar.setText("Atualizar");
+        btAtualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAtualizarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btAtualizar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
             .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btAtualizar)
+                .addContainerGap())
         );
 
         jTabbedPane3.addTab("Bandas", jPanel5);
@@ -245,7 +282,7 @@ public class FormAvaliacao extends javax.swing.JInternalFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(15, Short.MAX_VALUE)
                 .addComponent(jTabbedPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -253,63 +290,63 @@ public class FormAvaliacao extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jRadioButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton6ActionPerformed
-
     private void tbBandasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbBandasMouseClicked
         if (evt.getClickCount() > 1) {
             JTable obj = (JTable) evt.getComponent();
             int linha = obj.getSelectedRow();
             Integer cod = (Integer) obj.getModel().getValueAt(linha, 0);
-            Banda band;
-            band = new Banda(cod);
-            this.preencheTela(band);
+            //Banda band;
+            bandaSelecionada = new Banda(cod);
+            this.preencheTela(bandaSelecionada);
         }
     }//GEN-LAST:event_tbBandasMouseClicked
+
+    private void btAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAtualizarActionPerformed
+        this.atualizaLista();
+    }//GEN-LAST:event_btAtualizarActionPerformed
+
+    private void btAvaliarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAvaliarActionPerformed
+        System.out.println(bandaSelecionada.getCod());
+
+
+        System.out.println(BandaNota.getSelection());
+
+
+    }//GEN-LAST:event_btAvaliarActionPerformed
+
+    private void nota3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nota3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nota3ActionPerformed
+
+    private void nota2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nota2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nota2ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup BandaNota;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JToggleButton btAtualizar;
+    private javax.swing.JButton btAvaliar;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JRadioButton jRadioButton4;
-    private javax.swing.JRadioButton jRadioButton5;
-    private javax.swing.JRadioButton jRadioButton6;
-    private javax.swing.JRadioButton jRadioButton7;
-    private javax.swing.JRadioButton jRadioButton8;
-    private javax.swing.JRadioButton jRadioButton9;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTabbedPane jTabbedPane3;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTable jTable3;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea2;
     private javax.swing.JLabel lnNomebanda;
+    private javax.swing.JRadioButton nota1;
+    private javax.swing.JRadioButton nota2;
+    private javax.swing.JRadioButton nota3;
+    private javax.swing.JRadioButton nota4;
+    private javax.swing.JRadioButton nota5;
     private javax.swing.JTable tbBandas;
     private javax.swing.JTextArea txtBiografia;
     // End of variables declaration//GEN-END:variables
 
-    private void atualizaLista() {
+    public void atualizaLista() {
         try {
             BandaDAO bandaDAO = new BandaDAO(SistemaBandas.getConexao());
             List<Banda> lista = bandaDAO.listaTodos();

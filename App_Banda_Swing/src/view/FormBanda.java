@@ -139,6 +139,7 @@ public class FormBanda extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this.mdi, "Registro Salvo");
             this.limpaTela();
             
+            
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(this.mdi, String.format("Erro ao gravar Departamento:%s", ex.getMessage()), "Erro", JOptionPane.ERROR_MESSAGE);
             Logger.getLogger(FormBanda.class.getName()).log(Level.WARNING, "Erro ao gravar Departamento", ex);
