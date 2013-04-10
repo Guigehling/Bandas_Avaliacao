@@ -5,7 +5,6 @@
 package view;
 
 import bean.Banda;
-import dao.AvaliaDAO;
 import dao.BandaDAO;
 import java.sql.SQLException;
 import java.util.List;
@@ -15,6 +14,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import util.Controle;
 
 /**
  *
@@ -116,12 +116,14 @@ public class FormAvaliacao extends javax.swing.JInternalFrame {
 
         BandaNota.add(nota1);
         nota1.setText("1");
+        nota1.setActionCommand("1");
         nota1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         nota1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         nota1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
         BandaNota.add(nota2);
         nota2.setText("2");
+        nota2.setActionCommand("2");
         nota2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         nota2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         nota2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -133,6 +135,7 @@ public class FormAvaliacao extends javax.swing.JInternalFrame {
 
         BandaNota.add(nota3);
         nota3.setText("3");
+        nota3.setActionCommand("3");
         nota3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         nota3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         nota3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -144,12 +147,19 @@ public class FormAvaliacao extends javax.swing.JInternalFrame {
 
         BandaNota.add(nota4);
         nota4.setText("4");
+        nota4.setActionCommand("4");
         nota4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         nota4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         nota4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        nota4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nota4ActionPerformed(evt);
+            }
+        });
 
         BandaNota.add(nota5);
         nota5.setText("5");
+        nota5.setActionCommand("5");
         nota5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         nota5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         nota5.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -244,7 +254,7 @@ public class FormAvaliacao extends javax.swing.JInternalFrame {
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btAtualizar)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane3.addTab("Bandas", jPanel5);
@@ -282,7 +292,7 @@ public class FormAvaliacao extends javax.swing.JInternalFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(15, Short.MAX_VALUE)
+                .addContainerGap(23, Short.MAX_VALUE)
                 .addComponent(jTabbedPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -306,12 +316,12 @@ public class FormAvaliacao extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btAtualizarActionPerformed
 
     private void btAvaliarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAvaliarActionPerformed
-        System.out.println(bandaSelecionada.getCod());
-
-
-        System.out.println(BandaNota.getSelection());
-
-
+        //System.out.println(bandaSelecionada.getCod());
+        Integer i = Controle.getUsuario();
+        System.out.println(BandaNota.getSelection().getActionCommand());
+        //System.out.println(BandaNota.getSelection());
+        String s = BandaNota.getSelection().getActionCommand();
+        System.out.println(s);
     }//GEN-LAST:event_btAvaliarActionPerformed
 
     private void nota3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nota3ActionPerformed
@@ -322,6 +332,9 @@ public class FormAvaliacao extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_nota2ActionPerformed
 
+    private void nota4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nota4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nota4ActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup BandaNota;
     private javax.swing.JToggleButton btAtualizar;

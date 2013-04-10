@@ -20,7 +20,7 @@ public class SistemaBandas extends javax.swing.JFrame {
 
     private FormBanda formBanda;
     private FormAvaliacao formAvaliacao;
-    private static Connection conexao;    
+    private static Connection conexao;
 
     /**
      * Creates new form SistemaBandas

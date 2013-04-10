@@ -10,6 +10,7 @@ import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import util.Controle;
 
 /**
  *
@@ -21,7 +22,6 @@ public class FormLogin extends javax.swing.JDialog {
     public static final int RET_OK = 1;
     private JFrame parent;
     private int returnStatus = RET_CANCEL;
-    public static int usuarioSelecionado;
     
 
     public FormLogin(JFrame parent, boolean modal) {
@@ -201,8 +201,8 @@ public class FormLogin extends javax.swing.JDialog {
         try {
             UsuarioDAO usrDAO = new UsuarioDAO(SistemaBandas.getConexao());
             Usuario usr = usrDAO.retrieve(this.txtLogin.getText());
-            usuarioSelecionado= usr.getCod();
-            
+            Controle.setUsuario(usr.getCod());
+            Controle.getUsuario();
             if (usr != null) {
                 loginValido = usr.validaSenha(new String(this.txtSenha.getPassword()));                
             }
